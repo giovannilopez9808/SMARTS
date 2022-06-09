@@ -1,5 +1,14 @@
 # SMARTS model
 
+## Requeriments
+
+```bash
+scipy==1.7.3
+pandas==1.3.5
+numpy==1.21.5
+tqdm==4.62.3
+```
+
 ## Output compilation
 
 ```bash
