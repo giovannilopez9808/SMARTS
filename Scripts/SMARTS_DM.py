@@ -1,6 +1,6 @@
 from SMARTS_algorithm import SMARTS
-from pandas import read_csv
 from functions import mkdir
+from pandas import read_csv
 from os.path import join
 from tqdm import tqdm
 """

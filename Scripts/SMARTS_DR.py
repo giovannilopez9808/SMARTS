@@ -1,4 +1,4 @@
-from SMARTS_algorithm import *
+from SMARTS_algorithm import SMARTS_DR
 # Parametros para interactuar con el modelo, esto esta modificado para el uso de las estaciones SIMA en el periodo 2015-2020
 parameters = {
     "path stations": "../Data/",
