@@ -1,12 +1,12 @@
 from pandas import DataFrame, read_csv
 from scipy.integrate import trapz
 from os import system as terminal
+from functions import mkdir
 from numpy import (loadtxt,
                    where,
                    array,
                    mean,
                    max)
-from functions import mkdir
 from os.path import join
 from tqdm import tqdm
 
@@ -303,7 +303,7 @@ class SMARTS_DR(SMARTS):
         filename = join(station_path,
                         self.params["file data"])
         data = read_csv(filename)
-        with tqdm(data.index, unit="date") as bar:
+        with tqdm(data.index) as bar:
             for i, index in enumerate(bar):
                 self.initialize_aod(self.params["AOD inicial"],
                                     self.params["AOD limite"])
@@ -312,9 +312,9 @@ class SMARTS_DR(SMARTS):
                 filename = join(station_path,
                                 self.params["folder measurements"],
                                 filename)
-                hour, measurements = loadtxt(filename,
-                                             skiprows=self.params["hour initial"],
-                                             unpack=True)
+                measurements = loadtxt(filename,
+                                       skiprows=self.params["hour initial"],
+                                       usecols=1)
                 # Valor maximo de medicion, esta se usara para el calculo de la RD
                 data_max = max(measurements[0:self.delta_hour+1])
                 stop = False
