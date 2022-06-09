@@ -1,4 +1,5 @@
 from pandas import DataFrame, read_csv
+from scipy.integrate import trapz
 from os import system as terminal
 from numpy import (loadtxt,
                    where,
@@ -122,11 +123,9 @@ class SMARTS:
         wavelength, irradiance = loadtxt(name_result,
                                          skiprows=self.delta_lon,
                                          unpack=True)
-        integral = irradiance[0]
         # Calculo de la irradiancia solar a partir de los resultados del modelo SMARTS
-        size = len(irradiance)
-        for i in range(1, size):
-            integral += irradiance[i]*(wavelength[i]-wavelength[i-1])
+        integral = trapz(irradiance,
+                         wavelength)
         # Eliminación de los archivos
         terminal("rm data*")
         # Formato de la integral
